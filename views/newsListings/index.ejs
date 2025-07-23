@@ -1,0 +1,27 @@
+<%- include('../partials/head') %>
+
+<div class="container mt-4">
+  <h1 class="text-center mb-4">
+  <% if (category) { %>
+    <%= category.charAt(0).toUpperCase() + category.slice(1) %> News
+  <% } else { %>
+    All News
+  <% } %>
+  </h1>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <% foundListings.forEach((listing) => { %>
+      <div class="col">
+        <div class="card h-100">
+            <img src="<%= listing.image.url %>" class="card-img-top fixed-img" alt="Image of <%= listing.title %>">          <div class="card-body">
+            <h5 class="card-title"><%= listing.title %></h5>
+            <a href="/newsListing/<%= listing._id %>" class="btn btn-primary">read more</a>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
+
+</body>
+</html>

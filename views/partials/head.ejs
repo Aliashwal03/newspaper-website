@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <title>BahNews</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">BahNews</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <% if (user) { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/newsListing/new">Add a News</a>
+            </li>
+          <% } %>
+          <li class="nav-item">
+            <a class="nav-link" href="/newsListing">All News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/newsListing?category=sport">Sports News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/newsListing?category=politics">Politics News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/newsListing?category=tecnical">Technical News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/newsListing?category=Art">Art News</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <% if (user) { %>
+            <li class="nav-item">
+              <span class="nav-link disabled">Welcome, <%= user.username %>!</span>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/auth/sign-out">Sign Out</a>
+            </li>
+          <% } else { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/auth/sign-in">Sign In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/auth/sign-up">Sign Up</a>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </nav>
