@@ -40,15 +40,27 @@ router.get('/', async (req, res) => {
 })
 // VIEW A SINGLE LISTING (SHOW PAGE)
 router.get('/:listingId', async (req, res) => {
-    try {
-        const foundListing = await Listing.findById(req.params.listingId).populate('publisher').populate('comments.author')
-        console.log(foundListing)
-        res.render('newsListings/show.ejs', { foundListing: foundListing })
-    } catch (error) {
-        console.log(error)
-        res.redirect('/')
+  try {
+    const foundListing = await Listing.findById(req.params.listingId)
+      .populate('publisher')
+      .populate('comments.author');
+
+    // Default back url is the listings page
+    let backUrl = '/newsListing';
+
+    // Check referer header, exclude edit page
+    const referer = req.get('Referer');
+    if (referer && !referer.includes('/edit')) {
+      backUrl = referer;
     }
-})
+
+    res.render('newsListings/show.ejs', { foundListing, backUrl, user: req.session.user });
+  } catch (error) {
+    console.log(error);
+    res.redirect('/');
+  }
+});
+
 
 // DELETE LISTING FROM DATABASE
 router.delete('/:listingId', isSignedIn, async (req, res) => {

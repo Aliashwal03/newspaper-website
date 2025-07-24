@@ -22,13 +22,17 @@
       <label for="image" class="form-label">Replace The Old Image (optional)</label>
       <input type="file" accept="image/*" name="image" id="image" class="form-control" />
     </div>
-    <select name="category" class="form-control" required>
-      <option value="sport">Sport</option>
-      <option value="politics">Politics</option>
-      <option value="economic">Economic</option>
-      <option value="tecnical">Technical</option>
-      <option value="Art">Art</option>
-    </select>
+    <div class="mb-3">
+      <label for="category" class="form-label">Category</label>
+      <input
+        type="text"
+        id="category"
+        class="form-control"
+        value="<%= foundListing.category %>"
+        readonly
+      />
+      <input type="hidden" name="category" value="<%= foundListing.category %>" />
+    </div>
     <h1></h1>
 
     <button type="submit" class="btn btn-warning w-100">Update Listing</button>
