@@ -31,12 +31,11 @@ A full-stack web application designed for publishing and managing news articles 
 
 - **Backend:** Node.js, Express.js
 - **Frontend:** EJS Templates, Bootstrap 5
-- **Database:** MongoDB with Mongoose ODM
+- **Database:** MongoDB and cloudinary
 - **File Uploads:** Multer
 - **Authentication:** Express-session, Custom Middleware
 - **Templating Engine:** EJS
 
----
 
-## 📁 Folder Structure
+
 
