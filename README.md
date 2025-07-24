@@ -1,37 +1,50 @@
 # 📰 Newspaper App
 
-A full-stack web application designed for publishing and managing news articles and trending events. Built with **Node.js**, **Express**, **MongoDB**, and **EJS**, the platform allows authenticated users to post, edit, and delete news listings, while visitors can browse and read articles.
+![App Screenshot](./assets/image.png)
 
----
+## 🗞️ Description
 
-## 📌 Features
+A simple web-based newspaper platform for sharing news and trending events.  
+Users can create, edit, and delete posts, while others can browse and read articles.
 
-- 🔐 **User Authentication**
-  - Sign in/out functionality for publishers
-  - Access control using custom middleware
+This project was built to practice full-stack web development and user-based content publishing.
 
-- 📝 **News Management**
-  - Create, edit, delete news posts
-  - Upload and display images using `multer`
+## 🌐 Live Website
 
-- 🧑‍💼 **Publisher System**
-  - Each post is linked to a specific user (publisher)
-  - Admin-style editing permissions per post
+**Access the app here:**  
+👉 [https://bah-news-e9cf50add722.herokuapp.com](https://bah-news-e9cf50add722.herokuapp.com)
 
-- 🌐 **Public-Facing Interface**
-  - Home and category-based news browsing
-  - Trending/featured stories
+## 📂 How to Use
 
-- 🗂️ **Comments (Optional)**
-  - Readers can comment on articles *(if enabled)*
+1. Visit the website using the link above.
+2. Browse through the latest news articles.
+3. Log in to create, edit, or delete posts (if you have an account).
 
----
+## 🔧 Features
 
-## ⚙️ Technologies Used
+- Add, edit, and delete news posts
+- Each post linked to a specific user (publisher)
+- Upload images for posts
+- Clean and responsive layout
 
-- **Backend:** Node.js, Express.js
-- **Frontend:** EJS Templates, Bootstrap 5
-- **Database:** MongoDB and cloudinary
-- **File Uploads:** Multer
-- **Authentication:** Express-session, Custom Middleware
-- **Templating Engine:** EJS
+## 🛠️ Built With
+
+- HTML  
+- CSS  
+- JavaScript  
+- Node.js  
+- Express.js  
+- MongoDB  
+- EJS Templating
+
+## 🚧 Future Ideas
+
+- Add categories like "Tech", "Politics", etc.
+- Enable comments on posts
+- Improve mobile responsiveness
+- Add search and filter options
+
+## 👨‍💻 Author
+
+**Ali Alashawal**  
+[GitHub](https://github.com/Aliashwal03)
