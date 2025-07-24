@@ -38,7 +38,10 @@
         <span>
           <strong><em><%= comment.author.username %></em>:</strong> <%= comment.content %>
         </span>
-        <% if (user && comment.author._id.equals(user._id)) { %>
+        <% if (
+          user &&
+          (comment.author._id.equals(user._id) || foundListing.publisher._id.equals(user._id))
+        ) { %>
           <form action="/newsListing/<%= foundListing._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST" style="display:inline;">
             <button type="submit" class="btn btn-sm btn-danger">Delete</button>
           </form>

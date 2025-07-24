@@ -103,6 +103,39 @@ router.post('/:listingId/comments', isSignedIn, async (req, res) => {
     res.redirect(`/newsListing/${req.params.listingId}`)
 })
 
+router.delete('/:listingId/comments/:commentId', isSignedIn, async (req, res) => {
+    const { listingId, commentId } = req.params;
+    const userId = req.session.user._id;
+
+    try {
+        const foundListing = await Listing.findById(listingId).populate('publisher').populate('comments.author');
+
+        if (!foundListing) {
+            return res.send('Listing not found');
+        }
+
+        const comment = foundListing.comments.id(commentId);
+
+        if (!comment) {
+            return res.send('Comment not found');
+        }
+
+        // Allow if current user is either:
+        const isCommentAuthor = comment.author && comment.author._id.equals(userId);
+        const isPostAuthor = foundListing.publisher && foundListing.publisher._id.equals(userId);
+
+        if (isCommentAuthor || isPostAuthor) {
+            foundListing.comments.pull(comment._id); 
+            await foundListing.save();
+            return res.redirect(`/newsListing/${listingId}`);
+        }
+
+        return res.send('Not authorized to delete this comment');
+    } catch (err) {
+        console.error(err);
+        return res.send('Something went wrong');
+    }
+});
 
 
 module.exports = router
