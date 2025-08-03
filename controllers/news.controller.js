@@ -60,37 +60,67 @@ router.get('/', async (req, res) => {
 //     res.redirect('/');
 //   }
 // });
+// router.get('/:listingId', async (req, res) => {
+//   try {
+//     const foundListing = await Listing.findById(req.params.listingId)
+//       .populate('publisher')
+//       .populate('comments.author');
+
+//     // 🔒 Guard: If listing not found, show 404
+//     if (!foundListing) {
+//       return res.status(404).send('Listing not found');
+//     }
+
+//     // Default back URL
+//     let backUrl = '/newsListing';
+
+//     // Use referer unless it's the edit page
+//     const referer = req.get('Referer');
+//     if (referer && !referer.includes('/edit')) {
+//       backUrl = referer;
+//     }
+
+//     res.render('newsListings/show.ejs', {
+//       foundListing,
+//       backUrl,
+//       user: req.session?.user || null
+//     });
+//   } catch (error) {
+//     console.error('Error in GET /newsListing/:listingId:', error);
+//     res.status(500).send('Internal Server Error');
+//   }
+// });
+
 router.get('/:listingId', async (req, res) => {
   try {
     const foundListing = await Listing.findById(req.params.listingId)
       .populate('publisher')
       .populate('comments.author');
 
-    // 🔒 Guard: If listing not found, show 404
     if (!foundListing) {
+      console.log('Listing not found:', req.params.listingId);
       return res.status(404).send('Listing not found');
     }
 
-    // Default back URL
     let backUrl = '/newsListing';
-
-    // Use referer unless it's the edit page
     const referer = req.get('Referer');
     if (referer && !referer.includes('/edit')) {
       backUrl = referer;
     }
 
+    console.log('Rendering show.ejs for listing:', foundListing._id);
+
+    // Pass user or null to prevent errors
     res.render('newsListings/show.ejs', {
       foundListing,
       backUrl,
       user: req.session?.user || null
     });
   } catch (error) {
-    console.error('Error in GET /newsListing/:listingId:', error);
+    console.error('Error inside GET /newsListing/:listingId:', error);
     res.status(500).send('Internal Server Error');
   }
 });
-
 
 
 // DELETE LISTING FROM DATABASE
